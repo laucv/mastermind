@@ -5,8 +5,8 @@ import java.lang.Character;
 public class Mastermind {
 
     public static void main(String[] args) {
-        char secreto[];
-        char colores[] = {'r', 'b', 'y', 'g', 'o', 'p'};
+        char[] secreto;
+        char[] colores = {'r', 'b', 'y', 'g', 'o', 'p'};
         char[] prediccion = new char[4];
         String prediccionString;
         Scanner teclado = new Scanner(System.in);
@@ -26,6 +26,10 @@ public class Mastermind {
                     System.out.println("Introduce tu predicción: ");
                     prediccionString = teclado.nextLine();
                     correcto = true;
+                    if(prediccionString.length() != secreto.length){
+                        correcto = false;
+                        System.out.println("Solo puedes introducir cuatro colores.");
+                    }
                     for (int i = 0; i < prediccion.length && correcto; i++) {
                         prediccion[i] = prediccionString.charAt(i);
                         correcto = false;
@@ -36,7 +40,13 @@ public class Mastermind {
                         }
                     }
                     if (!correcto) {
-                        System.out.println("Valor introducido incorrecto, los valores válidos son: r, g, y, b, o, p.");
+                        System.out.println("Los colores válidos son: r, g, y, b, o, p.");
+                    }
+
+                    if (prediccion[0] == prediccion[1] || prediccion[0] == prediccion[2] || prediccion[0] == prediccion[3] ||
+                            prediccion[1] == prediccion[2] || prediccion[1] == prediccion[3] || prediccion[2] == prediccion[3]){
+                        correcto = false;
+                        System.out.println("No puedes repetir colores.");
                     }
 
                 } while (!correcto);
@@ -83,7 +93,7 @@ public class Mastermind {
         } while (Character.toLowerCase(seguir) == 's');
     }
 
-    public static char[] generarSecreto(char[] colores) {
+    private static char[] generarSecreto(char[] colores) {
         char[] secreto = new char[4];
         int random;
         char[] copiaColores = new char[colores.length];
