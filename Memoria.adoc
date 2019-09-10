@@ -38,3 +38,9 @@ En resumen, durante esta iteración se ha creado un software que es viscoso, rí
 por lo que en las siguientes iteracciones habrá que solucionar todos esos problemas.
 
 == Iteración 2
+
+
+|===
+a|image::diagramaClasesIteracion2.png[]
+|Figura 2
+|===
