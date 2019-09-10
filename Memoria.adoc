@@ -36,3 +36,5 @@ para otro proyecto ya que todo está construido en un mismo lugar, mezclando tod
 
 En resumen, durante esta iteración se ha creado un software que es viscoso, rígido, frágil e inmóvil;
 por lo que en las siguientes iteracciones habrá que solucionar todos esos problemas.
+
+== Iteración 2

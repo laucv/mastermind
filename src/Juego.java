@@ -17,24 +17,21 @@ public class Juego {
             System.out.println("---------------------------\nBienvenido a Mastermind. \nEl secreto es ****. \nComencemos.\n---------------------------");
 
             do {
-
                 do {
                     System.out.println("***Intento " + intento + "***");
                     System.out.println("Introduce tu predicción: ");
-                } while (!combinacionPropuesta.comprobarCondicionesCombinacionPropuesta(teclado.nextLine(), colores, combinacionPropuesta, combinacionSecreta));
-                combinacionPropuesta.setHeridos(0);
-                combinacionPropuesta.setMuertos(0);
+                } while (!combinacionPropuesta.comprobarCondicionesCombinacionPropuesta(teclado.nextLine(), colores, combinacionSecreta));
 
-                combinacionPropuesta.comprobarMuertos(combinacionPropuesta, combinacionSecreta);
-                combinacionPropuesta.comprobarHeridos(combinacionPropuesta, combinacionSecreta);
+                combinacionPropuesta.comprobarMuertos(combinacionSecreta);
+                combinacionPropuesta.comprobarHeridos(combinacionSecreta);
 
                 System.out.println("Hay " + combinacionPropuesta.getMuertos() + " muertos");
                 System.out.println("Hay " + combinacionPropuesta.getHeridos() + " heridos");
                 intento++;
 
-            } while (intento <= 10 && !combinacionPropuesta.comprobarCombinacionPropuesta(combinacionPropuesta, combinacionSecreta));
+            } while (intento <= 10 && !combinacionPropuesta.comprobarCombinacionPropuesta(combinacionSecreta));
 
-            if (combinacionPropuesta.comprobarCombinacionPropuesta(combinacionPropuesta, combinacionSecreta)) {
+            if (combinacionPropuesta.comprobarCombinacionPropuesta(combinacionSecreta)) {
                 System.out.println("¡Has ganado!");
             } else {
                 System.out.println("¡Has perdido! El secreto era: " + combinacionSecreta.toString());

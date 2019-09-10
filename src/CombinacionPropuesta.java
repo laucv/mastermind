@@ -14,21 +14,11 @@ public class CombinacionPropuesta {
         this.muertos = 0;
     }
 
-    public CombinacionPropuesta(char[] propuesta, int heridos, int muertos) {
-        this.propuesta = propuesta;
-        this.heridos = heridos;
-        this.muertos = muertos;
+    public boolean comprobarCombinacionPropuesta(CombinacionSecreta combinacionSecreta) {
+        return this.getMuertos() == combinacionSecreta.getSecreto().length;
     }
 
-    public boolean comprobarCombinacionPropuesta(CombinacionPropuesta combinacionPropuesta, CombinacionSecreta combinacionSecreta) {
-        if (combinacionPropuesta.getMuertos() == combinacionSecreta.getSecreto().length) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean comprobarCondicionesCombinacionPropuesta(String prediccionString, char[] colores, CombinacionPropuesta combinacionPropuesta, CombinacionSecreta combinacionSecreta) {
+    public boolean comprobarCondicionesCombinacionPropuesta(String prediccionString, char[] colores, CombinacionSecreta combinacionSecreta) {
         boolean correcto = true;
 
         if (prediccionString.length() != combinacionSecreta.getSecreto().length) {
@@ -36,10 +26,10 @@ public class CombinacionPropuesta {
             System.out.println("Solo puedes introducir cuatro colores.");
         } else {
 
-            for (int i = 0; i < combinacionPropuesta.getPropuesta().length; i++) {
+            for (int i = 0; i < this.getPropuesta().length; i++) {
                 for (int j = 0; j < colores.length; j++) {
                     if (prediccionString.charAt(i) == colores[j]) {
-                        combinacionPropuesta.setPropuesta(i, prediccionString.charAt(i));
+                        this.setPropuesta(i, prediccionString.charAt(i));
                         correcto = true;
                         j = colores.length;
                     } else {
@@ -51,12 +41,9 @@ public class CombinacionPropuesta {
             if (!correcto) {
                 System.out.println("Los colores válidos son: r, g, y, b, o, p.");
             } else {
-                if (combinacionPropuesta.getPropuesta()[0] == combinacionPropuesta.getPropuesta()[1] ||
-                        combinacionPropuesta.getPropuesta()[0] == combinacionPropuesta.getPropuesta()[2] ||
-                        combinacionPropuesta.getPropuesta()[0] == combinacionPropuesta.getPropuesta()[3] ||
-                        combinacionPropuesta.getPropuesta()[1] == combinacionPropuesta.getPropuesta()[2] ||
-                        combinacionPropuesta.getPropuesta()[1] == combinacionPropuesta.getPropuesta()[3] ||
-                        combinacionPropuesta.getPropuesta()[2] == combinacionPropuesta.getPropuesta()[3]) {
+                if (this.getPropuesta()[0] == this.getPropuesta()[1] || this.getPropuesta()[0] == this.getPropuesta()[2] ||
+                        this.getPropuesta()[0] == this.getPropuesta()[3] || this.getPropuesta()[1] == this.getPropuesta()[2] ||
+                        this.getPropuesta()[1] == this.getPropuesta()[3] || this.getPropuesta()[2] == this.getPropuesta()[3]) {
                     correcto = false;
                     System.out.println("No puedes repetir colores.");
                 }
@@ -66,37 +53,35 @@ public class CombinacionPropuesta {
         return correcto;
     }
 
-    public void comprobarMuertos(CombinacionPropuesta combinacionPropuesta, CombinacionSecreta combinacionSecreta) {
+    public void comprobarMuertos(CombinacionSecreta combinacionSecreta) {
+        int contadorMuertos = 0;
         for (int i = 0; i < combinacionSecreta.getSecreto().length; i++) {
-            if (combinacionSecreta.getSecreto()[i] == combinacionPropuesta.getPropuesta()[i]) {
-                combinacionPropuesta.setMuertos(combinacionPropuesta.getMuertos() + 1);
+            if (combinacionSecreta.getSecreto()[i] == this.getPropuesta()[i]) {
+                contadorMuertos++;
             }
         }
+        this.setMuertos(contadorMuertos);
     }
 
-    public void comprobarHeridos(CombinacionPropuesta combinacionPropuesta, CombinacionSecreta combinacionSecreta) {
+    public void comprobarHeridos(CombinacionSecreta combinacionSecreta) {
+        int contadorHeridos = 0;
         for (int i = 0; i < combinacionSecreta.getSecreto().length; i++) {
             for (int j = 0; j < combinacionSecreta.getSecreto().length; j++) {
-                if (combinacionSecreta.getSecreto()[i] == combinacionPropuesta.getPropuesta()[j]) {
-                    combinacionPropuesta.setHeridos(combinacionPropuesta.getHeridos() + 1);
+                if (combinacionSecreta.getSecreto()[i] == this.getPropuesta()[j]) {
+                    contadorHeridos++;
                 }
             }
         }
-        combinacionPropuesta.setHeridos(combinacionPropuesta.getHeridos() - combinacionPropuesta.getMuertos());
+        this.setHeridos(contadorHeridos- this.getMuertos());
     }
 
     public char[] getPropuesta() {
         return propuesta;
     }
 
-    public void setPropuesta(char[] propuesta) {
-        this.propuesta = propuesta;
-    }
-
     public void setPropuesta(int posicion, char color) {
         this.propuesta[posicion] = color;
     }
-
 
     public int getHeridos() {
         return heridos;
