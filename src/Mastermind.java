@@ -5,18 +5,22 @@ import java.lang.Character;
 public class Mastermind {
 
     public static void main(String[] args) {
-        char[] secreto;
+        char[] secreto = new char[4];
         char[] colores = {'r', 'b', 'y', 'g', 'o', 'p'};
         char[] prediccion = new char[4];
+        char[] propuesta = new char[4];
         String prediccionString;
         Scanner teclado = new Scanner(System.in);
         int intento = 1;
         boolean correcto;
         boolean ganador = false;
         char seguir;
+        int muertos = 0;
+        int heridos = 0;
+        Combinacion combinacion = new Combinacion(secreto, colores, propuesta, muertos, heridos);
 
         do {
-            secreto = generarSecreto(colores);
+            combinacion.secreto = generarSecreto(colores);
 
             System.out.println("---------------------------\nBienvenido a Mastermind. \nEl secreto es ****. \nComencemos.\n---------------------------");
 
@@ -31,10 +35,10 @@ public class Mastermind {
                         System.out.println("Solo puedes introducir cuatro colores.");
                     }
                     for (int i = 0; i < prediccion.length && correcto; i++) {
-                        prediccion[i] = prediccionString.charAt(i);
+                        combinacion.propuesta[i]= prediccionString.charAt(i);
                         correcto = false;
                         for (int j = 0; j < colores.length; j++) {
-                            if (prediccion[i] == colores[j]) {
+                            if (combinacion.propuesta[i] == combinacion.colores[j]) {
                                 correcto = true;
                             }
                         }
@@ -43,8 +47,9 @@ public class Mastermind {
                         System.out.println("Los colores válidos son: r, g, y, b, o, p.");
                     }
 
-                    if (prediccion[0] == prediccion[1] || prediccion[0] == prediccion[2] || prediccion[0] == prediccion[3] ||
-                            prediccion[1] == prediccion[2] || prediccion[1] == prediccion[3] || prediccion[2] == prediccion[3]){
+                    if (combinacion.propuesta[0] == combinacion.propuesta[1] || combinacion.propuesta[0] == combinacion.propuesta[2] ||
+                            combinacion.propuesta[0] == combinacion.propuesta[3] || combinacion.propuesta[1] == combinacion.propuesta[2] ||
+                            combinacion.propuesta[1] == combinacion.propuesta[3] || combinacion.propuesta[2] == combinacion.propuesta[3]){
                         correcto = false;
                         System.out.println("No puedes repetir colores.");
                     }
@@ -52,43 +57,43 @@ public class Mastermind {
                 } while (!correcto);
 
                 //comprobacion muertos
-                int muertos = 0;
-                for (int i = 0; i < secreto.length; i++) {
-                    if (secreto[i] == prediccion[i]) {
-                        muertos++;
+                for (int i = 0; i < combinacion.secreto.length; i++) {
+                    if (combinacion.secreto[i] == combinacion.propuesta[i]) {
+                        combinacion.muertos++;
                     }
                 }
                 //comprobar ganador
-                if (muertos == secreto.length) {
+                if (combinacion.muertos == combinacion.secreto.length) {
                     System.out.println("¡Has ganado!");
                     ganador = true;
                 }
 
                 if (!ganador) {
                     //comprobacion heridos
-                    int heridos = 0;
-                    for (int i = 0; i < secreto.length; i++) {
-                        for (int j = 0; j < secreto.length; j++) {
-                            if (secreto[i] == prediccion[j]) {
-                                heridos++;
+                    for (int i = 0; i < combinacion.secreto.length; i++) {
+                        for (int j = 0; j < combinacion.secreto.length; j++) {
+                            if (combinacion.secreto[i] == combinacion.propuesta[j]) {
+                                combinacion.heridos++;
                             }
                         }
                     }
-                    heridos = heridos - muertos;
-                    System.out.println("Hay " + muertos + " muertos");
-                    System.out.println("Hay " + heridos + " heridos");
+                    combinacion.heridos = combinacion.heridos - combinacion.muertos;
+                    System.out.println("Hay " + combinacion.muertos + " muertos");
+                    System.out.println("Hay " + combinacion.heridos + " heridos");
                     intento++;
+                    combinacion.muertos = 0;
+                    combinacion.heridos = 0;
                 }
 
             }
 
             if (!ganador) {
-                System.out.println("¡Has perdido! El secreto era: " + secreto[0] + secreto[1] + secreto[2] + secreto[3]);
+                System.out.println("¡Has perdido! El secreto era: " + combinacion.getSecreto().toString());
             }
 
             System.out.println("¿Deseas seguir jugando? S/N:");
             seguir = teclado.nextLine().charAt(0);
-            intento = 0;
+            intento = 1;
             ganador = false;
         } while (Character.toLowerCase(seguir) == 's');
     }
