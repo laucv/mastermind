@@ -56,20 +56,17 @@ public class Mastermind {
 
                 } while (!correcto);
 
-                //comprobacion muertos
                 for (int i = 0; i < combinacion.secreto.length; i++) {
                     if (combinacion.secreto[i] == combinacion.propuesta[i]) {
                         combinacion.muertos++;
                     }
                 }
-                //comprobar ganador
                 if (combinacion.muertos == combinacion.secreto.length) {
                     System.out.println("¡Has ganado!");
                     ganador = true;
                 }
 
                 if (!ganador) {
-                    //comprobacion heridos
                     for (int i = 0; i < combinacion.secreto.length; i++) {
                         for (int j = 0; j < combinacion.secreto.length; j++) {
                             if (combinacion.secreto[i] == combinacion.propuesta[j]) {
