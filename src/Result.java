@@ -14,29 +14,25 @@ public class Result {
     }
 
     public void setDead(SecretCombination secretCombination, ProposalCombination proposalCombination) {
-        int contadorMuertos = 0;
+        int deadCount = 0;
         for (int i = 0; i < secretCombination.getSecret().length; i++) {
             if (secretCombination.getSecret()[i] == proposalCombination.colors()[i]) {
-                contadorMuertos++;
+                deadCount++;
             }
         }
-        this.setMuertos(contadorMuertos);
+        this.setMuertos(deadCount);
     }
 
     public void setWounded(SecretCombination secretCombination, ProposalCombination proposalCombination) {
-        int contadorHeridos = 0;
+        int woundedCount = 0;
         for (int i = 0; i < secretCombination.getSecret().length; i++) {
             for (int j = 0; j < secretCombination.getSecret().length; j++) {
                 if (secretCombination.getSecret()[i] == proposalCombination.colors()[j]) {
-                    contadorHeridos++;
+                    woundedCount++;
                 }
             }
         }
-        this.setWounded(contadorHeridos- this.getDead());
-    }
-
-    public int getWounded() {
-        return wounded;
+        this.setWounded(woundedCount- this.getDead());
     }
 
     public void setWounded(int heridos) {
@@ -49,5 +45,9 @@ public class Result {
 
     public void setMuertos(int muertos) {
         this.dead = muertos;
+    }
+
+    public void printResult(){
+        System.out.println("");
     }
 }

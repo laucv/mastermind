@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Scanner;
 import java.lang.Character;
 
@@ -6,31 +5,36 @@ public class Mastermind {
 
     public static void main(String[] args) {
 
-        int turn = 0;
+        int attempt = 0;
         Scanner scanner = new Scanner(System.in);
         SecretCombination secretCombination = new SecretCombination();
-        ArrayList<ProposalCombination> proposalsCombination = new ArrayList<>();
-        ArrayList<Result> results = new ArrayList<>();
+        ProposalCombination[] proposalsCombination = new ProposalCombination[10];
+        Result[] results = new Result[10];
         ProposalCombination proposalCombination = new ProposalCombination();
         Result result = new Result();
 
         do {
 
-            System.out.println("---------------------------\nBienvenido a Mastermind. \nEl secreto es ****. \nComencemos.\n---------------------------");
+            System.out.println("---------------------------\nMastermind. \nThe secret is****. \nLet's get started.\n---------------------------");
             do {
 
                 do {
-                    System.out.println("***Intento " + (turn + 1 )+ "***");
-                    System.out.println("Introduce tu predicción: ");
+                    System.out.println("***Attempt " + (attempt + 1 )+ "***");
+                    System.out.println("Propose a combination: ");
                 } while (!proposalCombination.isValid(scanner.nextLine()));
 
                 result.setDead(secretCombination, proposalCombination);
                 result.setWounded(secretCombination, proposalCombination);
-                System.out.println("Hay " + result.getDead() + " muertos");
-                System.out.println("Hay " + result.getWounded() + " heridos");
-                turn++;
+                proposalsCombination[attempt] = proposalCombination;
+                results[attempt] = result;
 
-            } while (turn < 10 && !result.isWinner(secretCombination));
+                for (int i = 0; i < results.length; i++) {
+                    results[i].printResult();
+                }
+
+                attempt++;
+
+            } while (attempt < 10 && !result.isWinner(secretCombination));
 
             if (result.isWinner(secretCombination)) {
                 System.out.println("¡Has ganado!");
@@ -39,7 +43,7 @@ public class Mastermind {
             }
 
             System.out.println("¿Deseas seguir jugando? S/N:");
-            turn = 0;
+            attempt = 0;
 
         } while (Character.toLowerCase(scanner.nextLine().charAt(0)) == 's');
 

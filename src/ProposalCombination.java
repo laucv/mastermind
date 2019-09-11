@@ -3,13 +3,13 @@ public class ProposalCombination extends Combination {
     public boolean isValid(String string) {
 
         if (!this.checkLength(string)) {
-            System.out.println("Solo puedes introducir cuatro colores.");
+            System.out.println("Wrong proposed combination length");
             return false;
         } else if (!this.checkColors(string)) {
-            System.out.println("Los colores válidos son: r, g, y, b, o, p.");
+            System.out.println("Wrong colors, they must be: rbygop");
             return false;
         } else if (this.checkRepeatColors()) {
-            System.out.println("No puedes repetir colores.");
+            System.out.println("Repeated colors");
             return false;
         } else {
             return true;
