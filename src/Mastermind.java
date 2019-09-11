@@ -1,47 +1,49 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.lang.Character;
 
 public class Mastermind {
 
-    private char[] colores = {'r', 'b', 'y', 'g', 'o', 'p'};
+    public static void main(String[] args) {
 
-    public void iniciarJuego() {
-
-        Scanner teclado = new Scanner(System.in);
-        int intento = 1;
-        CombinacionSecreta combinacionSecreta = new CombinacionSecreta();
-        CombinacionPropuesta combinacionPropuesta = new CombinacionPropuesta();
+        int turn = 0;
+        Scanner scanner = new Scanner(System.in);
+        SecretCombination secretCombination = new SecretCombination();
+        ArrayList<ProposalCombination> proposalsCombination = new ArrayList<>();
+        ArrayList<Result> results = new ArrayList<>();
+        ProposalCombination proposalCombination = new ProposalCombination();
+        Result result = new Result();
 
         do {
-            combinacionSecreta.setSecreto(colores);
+
             System.out.println("---------------------------\nBienvenido a Mastermind. \nEl secreto es ****. \nComencemos.\n---------------------------");
-
             do {
+
                 do {
-                    System.out.println("***Intento " + intento + "***");
+                    System.out.println("***Intento " + (turn + 1 )+ "***");
                     System.out.println("Introduce tu predicción: ");
-                } while (!combinacionPropuesta.comprobarCondicionesCombinacionPropuesta(teclado.nextLine(), colores, combinacionSecreta));
+                } while (!proposalCombination.isValid(scanner.nextLine()));
 
-                combinacionPropuesta.comprobarMuertos(combinacionSecreta);
-                combinacionPropuesta.comprobarHeridos(combinacionSecreta);
+                result.setDead(secretCombination, proposalCombination);
+                result.setWounded(secretCombination, proposalCombination);
+                System.out.println("Hay " + result.getDead() + " muertos");
+                System.out.println("Hay " + result.getWounded() + " heridos");
+                turn++;
 
-                System.out.println("Hay " + combinacionPropuesta.getMuertos() + " muertos");
-                System.out.println("Hay " + combinacionPropuesta.getHeridos() + " heridos");
-                intento++;
+            } while (turn < 10 && !result.isWinner(secretCombination));
 
-            } while (intento <= 10 && !combinacionPropuesta.comprobarCombinacionPropuesta(combinacionSecreta));
-
-            if (combinacionPropuesta.comprobarCombinacionPropuesta(combinacionSecreta)) {
+            if (result.isWinner(secretCombination)) {
                 System.out.println("¡Has ganado!");
             } else {
-                System.out.println("¡Has perdido! El secreto era: " + combinacionSecreta.toString());
+                System.out.println("¡Has perdido! El secreto era: " + secretCombination.toString());
             }
 
             System.out.println("¿Deseas seguir jugando? S/N:");
-            intento = 1;
-        } while (Character.toLowerCase(teclado.nextLine().charAt(0)) == 's');
+            turn = 0;
 
-        teclado.close();
+        } while (Character.toLowerCase(scanner.nextLine().charAt(0)) == 's');
+
+        scanner.close();
 
     }
 
