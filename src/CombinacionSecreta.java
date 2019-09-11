@@ -4,8 +4,9 @@ import java.util.Random;
 public class CombinacionSecreta {
     private char[] secreto;
 
-    public CombinacionSecreta() {
+    public CombinacionSecreta(char[] colores) {
         this.secreto = new char[4];
+        this.setSecreto(colores);
     }
 
     @Override
