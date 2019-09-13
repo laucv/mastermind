@@ -1,3 +1,5 @@
+package Models;
+
 public class ProposalCombination extends Combination {
 
     public boolean isValid(String string) {
@@ -40,4 +42,9 @@ public class ProposalCombination extends Combination {
         return (this.colors[0] == this.colors[1] || this.colors[0] == this.colors[2] || this.colors[0] == this.colors[3] ||
                 this.colors[1] == this.colors[2] || this.colors[1] == this.colors[3] || this.colors[2] == this.colors[3]);
     }
+
+    public Color getColor(int position){
+        return this.colors[position];
+    }
+
 }
