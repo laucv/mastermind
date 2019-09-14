@@ -8,7 +8,7 @@ public class ProposalCombination extends Combination {
             System.out.println("Wrong proposed combination length");
             return false;
         } else if (!this.checkColors(string)) {
-            System.out.println("Wrong colors, they must be: rbygop");
+            System.out.println("Wrong colors, they must be: r, b, y, g, o, p");
             return false;
         } else if (this.checkRepeatColors()) {
             System.out.println("Repeated colors");
@@ -26,24 +26,28 @@ public class ProposalCombination extends Combination {
         boolean isValid = false;
         Color colorUser = Color.r;
         for (int i = 0; i < this.colors.length; i++) {
-            colorUser = colorUser.getColor(string.charAt(i));
-            for (Color color : Color.values()) {
-                if (color == colorUser) {
-                    this.setColorsInPosition(i, color);
-                    isValid = true;
-                    break;
+            if (colorUser.doesColorExits(string.charAt(i))) {
+                colorUser = colorUser.getColor(string.charAt(i));
+                for (Color color : Color.values()) {
+                    if (color == colorUser) {
+                        this.setColorsInPosition(i, color);
+                        isValid = true;
+                        break;
+                    }
                 }
+            } else {
+                return false;
             }
         }
         return isValid;
     }
 
-    private boolean checkRepeatColors(){
+    private boolean checkRepeatColors() {
         return (this.colors[0] == this.colors[1] || this.colors[0] == this.colors[2] || this.colors[0] == this.colors[3] ||
                 this.colors[1] == this.colors[2] || this.colors[1] == this.colors[3] || this.colors[2] == this.colors[3]);
     }
 
-    public Color getColor(int position){
+    public Color getColor(int position) {
         return this.colors[position];
     }
 

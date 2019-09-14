@@ -53,6 +53,7 @@ public class View {
             System.out.println("You win!");
         } else{
             System.out.println("You lose!");
+            System.out.println("The secret combination was: " + this.game.getSecretCombination() + "\n");
         }
     }
 }
