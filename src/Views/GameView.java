@@ -5,8 +5,8 @@ import Models.ProposalCombination;
 
 public class GameView {
 
-    Game game;
-    ProposalCombinationView proposalCombinationView;
+    private Game game;
+    private ProposalCombinationView proposalCombinationView;
 
     public GameView(Game game) {
         this.game = game;

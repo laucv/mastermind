@@ -45,7 +45,22 @@ a|image::diagramaClasesIteracion2.png[]
 |Figura 2
 |===
 .Si analizamos la complejidad de este nuevo software:
-* Viscosidad No
-* Rigidez No
-* Fragilidad No
-* Inmovilidad No
+* Viscosidad
+* Rigidez
+* Fragilidad
+* Inmovilidad
+
+== Iteración 3
+En esta tercera iteración
+|===
+a|image::diagramaClasesIteracion3.png[]
+|Figura 3
+|===
+
+== Iteración 4
+En la cuarta iteración realizamos un modelo-vista que nos permite tener un software
+bastante reutilizable y sencillo de comprender.
+|===
+a|image::diagramaClasesIteracion4.png[]
+|Figura 4
+|===

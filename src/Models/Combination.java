@@ -10,7 +10,7 @@ public class Combination {
         this.colors = new Color[4];
     }
 
-    public Color[] colors() {
+    public Color[] getColors() {
         return colors;
     }
 

@@ -1,10 +1,10 @@
 package Models;
 
 public class Game {
-    SecretCombination secretCombination;
-    ProposalCombination[] proposalsCombination;
-    Result[] results;
-    int attempt;
+    private SecretCombination secretCombination;
+    private ProposalCombination[] proposalsCombination;
+    private Result[] results;
+    private int attempt;
 
     public Game() {
         this.clear();
