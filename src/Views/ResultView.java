@@ -11,7 +11,8 @@ public class ResultView {
     }
 
     public void write(){
-        System.out.println("Dead: " + this.result.getDead());
-        System.out.println("Wounded: " + this.result.getWounded());
+        System.out.print("Dead: " + this.result.getDead());
+        System.out.print(" & Wounded: " + this.result.getWounded());
+        System.out.println("");
     }
 }

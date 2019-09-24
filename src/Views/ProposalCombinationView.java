@@ -2,7 +2,6 @@ package Views;
 
 import Models.ProposalCombination;
 
-import javax.swing.*;
 import java.util.Scanner;
 
 public class ProposalCombinationView {
@@ -25,6 +24,6 @@ public class ProposalCombinationView {
     }
 
     public void write(){
-        System.out.println(this.proposalCombination + "->");
+        System.out.print(this.proposalCombination + "->");
     }
 }
