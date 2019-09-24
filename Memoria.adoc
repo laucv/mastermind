@@ -35,4 +35,32 @@ cambios en cascada. Podemos olvidar cambiar cualquier detalle que consiga estrop
 para otro proyecto ya que todo está construido en un mismo lugar, mezclando todas sus partes.
 
 En resumen, durante esta iteración se ha creado un software que es viscoso, rígido, frágil e inmóvil;
-por lo que en las siguientes iteracciones habrá que solucionar todos esos problemas.
+por lo que en las siguientes iteracciones habrá que solucionar todos esos problemas ya que es un
+software no mantenible.
+
+== Iteración 2
+En la segunda iteración se mejora el software, añadiendo más clases y refactorizando el código.
+|===
+a|image::diagramaClasesIteracion2.png[]
+|Figura 2
+|===
+.Si analizamos la complejidad de este nuevo software:
+* Viscosidad
+* Rigidez
+* Fragilidad
+* Inmovilidad
+
+== Iteración 3
+En esta tercera iteración
+|===
+a|image::diagramaClasesIteracion3.png[]
+|Figura 3
+|===
+
+== Iteración 4
+En la cuarta iteración realizamos un modelo-vista que nos permite tener un software
+bastante reutilizable y sencillo de comprender.
+|===
+a|image::diagramaClasesIteracion4.png[]
+|Figura 4
+|===
