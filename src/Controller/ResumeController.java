@@ -1,6 +1,7 @@
 package Controller;
 
 import Models.Game;
+import Views.SecretCombinationView;
 
 public class ResumeController extends Controller {
 
@@ -10,6 +11,10 @@ public class ResumeController extends Controller {
 
     public void resume() {
         this.game.clear();
+    }
+
+    public void writeSecretCombination(){
+        new SecretCombinationView(new ResumeController(this.game)).writeSecret();
     }
 
 }

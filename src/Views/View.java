@@ -41,12 +41,11 @@ public class View {
     }
 
     private void continueGame() {
-        GameView gameView = new GameView(this.continueController);
-        gameView.writeAttempt();
-        continueController.readAttempt();
-        gameView.setNewAttempt();
-        continueController.saveAttempt();
-        gameView.writeResults();
+        this.continueController.writeAttempt();
+        this.continueController.readAttempt();
+        this.continueController.setNewAttempt();
+        this.continueController.saveAttempt();
+        this.continueController.writeResults();
     }
 
     private boolean resume() {
@@ -59,7 +58,7 @@ public class View {
             System.out.println("You win!");
         } else{
             System.out.println("You lose!");
-            resumeController.writeSecretCombination();
+            this.resumeController.writeSecretCombination();
         }
     }
 }

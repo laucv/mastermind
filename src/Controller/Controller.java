@@ -3,7 +3,6 @@ package Controller;
 import Models.Game;
 import Models.ProposalCombination;
 import Models.SecretCombination;
-import Views.ProposalCombinationView;
 import Views.SecretCombinationView;
 
 public class Controller {
@@ -26,12 +25,6 @@ public class Controller {
         return this.game.getAttempt();
     }
 
-    public void readAttempt() {
-        ProposalCombinationView proposalCombinationView = new ProposalCombinationView(new Controller(this.game));
-        proposalCombinationView.read();
-        this.game.setNewProposalCombination(this.game.getAttempt(), proposalCombinationView.getProposalCombination());
-    }
-
     public ProposalCombination getProposalCombination() {
         return this.game.getProposalsCombination()[this.game.getAttempt()];
     }
@@ -52,7 +45,4 @@ public class Controller {
         return this.game.getResults()[position].getWounded();
     }
 
-    public void writeSecretCombination(){
-        new SecretCombinationView(new Controller(this.game)).writeSecret();
-    }
 }
