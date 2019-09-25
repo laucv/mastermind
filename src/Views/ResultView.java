@@ -1,18 +1,18 @@
 package Views;
 
-import Models.Result;
+import Controller.Controller;
 
 public class ResultView {
 
-    private Result result;
+    private Controller controller;
 
-    public ResultView(Result result){
-        this.result = result;
+    public ResultView(Controller controller){
+        this.controller = controller;
     }
 
-    public void write(){
-        System.out.print("Dead: " + this.result.getDead());
-        System.out.print(" & Wounded: " + this.result.getWounded());
+    public void write(int position){
+        System.out.print("Dead: " + this.controller.getDead(position));
+        System.out.print(" & Wounded: " + this.controller.getWounded(position));
         System.out.println("");
     }
 }

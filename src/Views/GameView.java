@@ -6,10 +6,12 @@ public class GameView {
 
     private Controller controller;
     private ProposalCombinationView proposalCombinationView;
+    private ResultView resultView;
 
     public GameView (Controller controller){
         this.controller = controller;
         proposalCombinationView = new ProposalCombinationView(controller);
+        resultView = new ResultView(controller);
     }
 
     public void writeStartGame(){
@@ -31,7 +33,7 @@ public class GameView {
         System.out.println("Previusly results: \n");
         for (int i = 0; i < controller.getAttempt() + 1; i++){
             proposalCombinationView.write(i);
-            new ResultView(controller.getResults()[i]).write();
+            resultView.write(i);
         }
         System.out.println("********************");
     }

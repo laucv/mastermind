@@ -6,6 +6,7 @@ import Models.ProposalCombination;
 import java.util.Scanner;
 
 public class ProposalCombinationView {
+
     private Controller controller;
 
     public ProposalCombinationView(Controller controller) {

@@ -51,4 +51,12 @@ public class Controller {
     public boolean isValid(String string) {
         return this.getProposalCombination().isValid(string);
     }
+
+    public int getDead(int position){
+        return this.game.getResults()[position].getDead();
+    }
+
+    public int getWounded(int position){
+        return this.game.getResults()[position].getWounded();
+    }
 }
