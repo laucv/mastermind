@@ -25,7 +25,7 @@ public class Game {
         return this.secretCombination.isWinner(this.results[this.getAttempt()]);
     }
 
-    public void playAttempt() {
+    public void saveAttempt() {
         this.secretCombination.setDead(this.proposalsCombination[attempt], this.results[attempt]);
         this.secretCombination.setWounded(this.proposalsCombination[attempt], this.results[attempt]);
     }

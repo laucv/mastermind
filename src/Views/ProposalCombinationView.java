@@ -1,14 +1,15 @@
 package Views;
 
+import Controller.Controller;
 import Models.ProposalCombination;
 
 import java.util.Scanner;
 
 public class ProposalCombinationView {
-    private ProposalCombination proposalCombination;
+    private Controller controller;
 
-    public ProposalCombinationView(ProposalCombination proposalCombination) {
-        this.proposalCombination = proposalCombination;
+    public ProposalCombinationView(Controller controller) {
+        this.controller = controller;
     }
 
     public void read(){
@@ -16,14 +17,14 @@ public class ProposalCombinationView {
         String string;
         do {
             string = scanner.nextLine();
-        }while (!proposalCombination.isValid(string));
+        }while (!this.controller.isValid(string));
     }
 
     public ProposalCombination getProposalCombination(){
-        return this.proposalCombination;
+        return this.controller.getProposalCombination();
     }
 
-    public void write(){
-        System.out.print(this.proposalCombination + "->");
+    public void write(int position){
+        System.out.print(this.controller.getProposalCombination(position) + "->");
     }
 }

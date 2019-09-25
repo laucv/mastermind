@@ -1,15 +1,22 @@
 package Views;
 
+import Controller.ContinueController;
+import Controller.ResumeController;
+import Controller.StartController;
 import Models.Game;
 
 import java.util.Scanner;
 
 public class View {
 
-    private Game game;
+    private StartController startController;
+    private ContinueController continueController;
+    private ResumeController resumeController;
 
-    public View(Game game) {
-        this.game = game;
+    public View(StartController startController, ContinueController continueController, ResumeController resumeController) {
+        this.startController = startController;
+        this.continueController = continueController;
+        this.resumeController = resumeController;
     }
 
     public void initGameView() {
@@ -19,27 +26,27 @@ public class View {
             boolean finished;
             do {
                 this.continueGame();
-                finished = this.game.isFinished();
-                this.game.nextAttempt();
-            } while (!finished && this.game.getAttempt() < 10);
+                finished = continueController.isFinished();
+                continueController.nextAttempt();
+            } while (!finished && continueController.getAttempt() < 10);
             this.finishedGame(finished);
             resume = this.resume();
             if (resume) {
-                this.game.clear();
+                resumeController.resume();
             }
         } while (resume);
     }
 
     private void start() {
-        new GameView(this.game).writeStartGame();
+        new GameView(this.startController).writeStartGame();
     }
 
     private void continueGame() {
-        GameView gameView = new GameView(this.game);
+        GameView gameView = new GameView(this.continueController);
         gameView.writeAttempt();
-        gameView.readAttempt();
+        continueController.readAttempt();
         gameView.setNewAttempt();
-        this.game.playAttempt();
+        continueController.saveAttempt();
         gameView.writeResults();
     }
 
@@ -53,7 +60,7 @@ public class View {
             System.out.println("You win!");
         } else{
             System.out.println("You lose!");
-            System.out.println("The secret combination was: " + this.game.getSecretCombination() + "\n");
+            System.out.println("The secret combination was: " + resumeController.getSecretCombination() + "\n");
         }
     }
 }

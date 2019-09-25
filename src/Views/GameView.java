@@ -1,42 +1,37 @@
 package Views;
 
-import Models.Game;
-import Models.ProposalCombination;
+import Controller.Controller;
 
 public class GameView {
 
-    private Game game;
+    private Controller controller;
     private ProposalCombinationView proposalCombinationView;
 
-    public GameView(Game game) {
-        this.game = game;
+    public GameView (Controller controller){
+        this.controller = controller;
+        proposalCombinationView = new ProposalCombinationView(controller);
     }
 
     public void writeStartGame(){
         System.out.println("--------------------------------\n         Mastermind");
-        new SecretCombinationView(this.game.getSecretCombination()).write();
+        new SecretCombinationView(controller.getSecretCombination()).write();
         System.out.println("--------------------------------");
     }
 
     public void writeAttempt(){
-        System.out.println("***Attempt " + (this.game.getAttempt() + 1) + "***");
+        System.out.println("***Attempt " + (controller.getAttempt() + 1) + "***");
         System.out.println("Propose a combination: ");
     }
 
-    public void readAttempt(){
-        proposalCombinationView = new ProposalCombinationView(new ProposalCombination());
-        proposalCombinationView.read();
-    }
-
     public void setNewAttempt(){
-        this.game.setNewProposalCombination(this.game.getAttempt(), proposalCombinationView.getProposalCombination());
+        controller.setNewProposalCombination(controller.getAttempt(), controller.getProposalCombination());
     }
 
     public void writeResults(){
         System.out.println("Previusly results: \n");
-        for (int i = 0; i < this.game.getAttempt() + 1; i++){
-            new ProposalCombinationView(this.game.getProposalsCombination()[i]).write();
-            new ResultView(this.game.getResults()[i]).write();
+        for (int i = 0; i < controller.getAttempt() + 1; i++){
+            proposalCombinationView.write(i);
+            new ResultView(controller.getResults()[i]).write();
         }
         System.out.println("********************");
     }
