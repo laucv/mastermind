@@ -16,7 +16,7 @@ public class GameView {
 
     public void writeStartGame(){
         System.out.println("--------------------------------\n         Mastermind");
-        new SecretCombinationView(controller.getSecretCombination()).write();
+        new SecretCombinationView(this.controller).writeHiddenSecret();
         System.out.println("--------------------------------");
     }
 

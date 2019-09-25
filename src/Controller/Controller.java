@@ -2,9 +2,9 @@ package Controller;
 
 import Models.Game;
 import Models.ProposalCombination;
-import Models.Result;
 import Models.SecretCombination;
 import Views.ProposalCombinationView;
+import Views.SecretCombinationView;
 
 public class Controller {
 
@@ -24,14 +24,6 @@ public class Controller {
 
     public int getAttempt() {
         return this.game.getAttempt();
-    }
-
-    public ProposalCombination[] getProposalsCombination() {
-        return this.game.getProposalsCombination();
-    }
-
-    public Result[] getResults() {
-        return this.game.getResults();
     }
 
     public void readAttempt() {
@@ -58,5 +50,9 @@ public class Controller {
 
     public int getWounded(int position){
         return this.game.getResults()[position].getWounded();
+    }
+
+    public void writeSecretCombination(){
+        new SecretCombinationView(new Controller(this.game)).writeSecret();
     }
 }

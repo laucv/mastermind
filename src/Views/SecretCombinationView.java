@@ -1,16 +1,20 @@
 package Views;
 
-import Models.SecretCombination;
+import Controller.Controller;
 
 public class SecretCombinationView {
 
-    private SecretCombination secretCombination;
+    private Controller controller;
 
-    public SecretCombinationView(SecretCombination secretCombination){
-        this.secretCombination = secretCombination;
+    public SecretCombinationView(Controller controller) {
+        this.controller = controller;
     }
 
-    public void write(){
+    public void writeHiddenSecret() {
         System.out.println("The secret combination is: ****");
+    }
+
+    public void writeSecret() {
+        System.out.println("The secret combination was: " + this.controller.getSecretCombination() + "\n");
     }
 }

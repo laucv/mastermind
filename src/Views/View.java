@@ -3,7 +3,6 @@ package Views;
 import Controller.ContinueController;
 import Controller.ResumeController;
 import Controller.StartController;
-import Models.Game;
 
 import java.util.Scanner;
 
@@ -60,7 +59,7 @@ public class View {
             System.out.println("You win!");
         } else{
             System.out.println("You lose!");
-            System.out.println("The secret combination was: " + resumeController.getSecretCombination() + "\n");
+            resumeController.writeSecretCombination();
         }
     }
 }
