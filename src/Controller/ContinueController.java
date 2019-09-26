@@ -1,13 +1,14 @@
 package Controller;
 
 import Models.Game;
+import Models.State;
 import Views.GameView;
 import Views.ProposalCombinationView;
 
 public class ContinueController extends Controller {
 
-    public ContinueController(Game game) {
-        super(game);
+    public ContinueController(Game game, State state) {
+        super(game, state);
     }
 
     public boolean isFinished() {
