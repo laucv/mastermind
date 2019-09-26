@@ -6,9 +6,9 @@ import Controller.StartController;
 
 import java.util.Scanner;
 
-public class ConsoleView extends View {
+public class ControlView extends View {
 
-    public ConsoleView(StartController startController, ContinueController continueController, ResumeController resumeController) {
+    public ControlView(StartController startController, ContinueController continueController, ResumeController resumeController) {
         super(startController, continueController, resumeController);
     }
 

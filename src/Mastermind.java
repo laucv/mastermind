@@ -2,8 +2,7 @@ import Controller.ContinueController;
 import Controller.ResumeController;
 import Controller.StartController;
 import Models.Game;
-import Views.ConsoleView;
-import Views.GameView;
+import Views.ControlView;
 import Views.View;
 
 public class Mastermind {
@@ -19,7 +18,7 @@ public class Mastermind {
         this.startController = new StartController(this.game);
         this.continueController = new ContinueController(this.game);
         this.resumeController = new ResumeController(this.game);
-        this.view = new ConsoleView(startController, continueController, resumeController);
+        this.view = new ControlView(startController, continueController, resumeController);
     }
 
     public static void main(String[] args) {
