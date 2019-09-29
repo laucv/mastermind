@@ -51,7 +51,4 @@ public class SecretCombination extends Combination {
         }
     }
 
-    public Color[] getSecret() {
-        return colors;
-    }
 }
