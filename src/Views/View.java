@@ -4,8 +4,6 @@ import Controller.ContinueController;
 import Controller.ResumeController;
 import Controller.StartController;
 
-import java.util.Scanner;
-
 public abstract class View {
 
     protected StartController startController;
