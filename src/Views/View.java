@@ -4,13 +4,11 @@ import Controller.ContinueController;
 import Controller.ResumeController;
 import Controller.StartController;
 
-import java.util.Scanner;
+public abstract class View {
 
-public class View {
-
-    private StartController startController;
-    private ContinueController continueController;
-    private ResumeController resumeController;
+    protected StartController startController;
+    protected ContinueController continueController;
+    protected ResumeController resumeController;
 
     public View(StartController startController, ContinueController continueController, ResumeController resumeController) {
         this.startController = startController;
@@ -36,22 +34,11 @@ public class View {
         } while (resume);
     }
 
-    private void start() {
-        new GameView(this.startController).writeStartGame();
-    }
+    public abstract void start();
 
-    private void continueGame() {
-        this.continueController.writeAttempt();
-        this.continueController.readAttempt();
-        this.continueController.setNewAttempt();
-        this.continueController.saveAttempt();
-        this.continueController.writeResults();
-    }
+    public abstract void continueGame();
 
-    private boolean resume() {
-        System.out.println("Would you like to play again? Y/N");
-        return Character.toLowerCase(new Scanner(System.in).nextLine().charAt(0)) == 'y';
-    }
+    public abstract boolean resume();
 
     private void finishedGame(boolean finished){
         if(finished){
