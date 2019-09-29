@@ -11,7 +11,7 @@ public class SecretCombination extends Combination {
     }
 
     public boolean isWinner(Result result){
-        return result.getDead() == getSecret().length;
+        return result.getDead() == this.colors.length;
     }
 
     public void setDead(ProposalCombination proposalCombination, Result result){
