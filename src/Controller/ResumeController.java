@@ -19,8 +19,9 @@ public class ResumeController extends Controller {
         }
     }
 
-    public void writeSecretCombination(){
-        new SecretCombinationView(new ResumeController(this.game)).writeSecret();
-    }
+    @Override
+    public void accept(ControllerVisitor controllerVisitor) {
+        controllerVisitor.visit(this);
 
+    }
 }

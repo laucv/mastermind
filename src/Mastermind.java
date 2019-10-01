@@ -1,24 +1,16 @@
-import Controller.ContinueController;
-import Controller.ResumeController;
-import Controller.StartController;
-import Models.Game;
+import Controller.Controller;
+import Controller.Logic;
 import Views.ControlView;
 import Views.View;
 
 public class Mastermind {
 
-    private Game game;
+    private Logic logic;
     private View view;
-    private StartController startController;
-    private ContinueController continueController;
-    private ResumeController resumeController;
 
     private Mastermind() {
-        this.game = new Game();
-        this.startController = new StartController(this.game);
-        this.continueController = new ContinueController(this.game);
-        this.resumeController = new ResumeController(this.game);
-        this.view = new ControlView(startController, continueController, resumeController);
+        this.logic = new Logic();
+        this.view = new ControlView();
     }
 
     public static void main(String[] args) {
@@ -26,7 +18,11 @@ public class Mastermind {
     }
 
     public void play() {
-        view.initGameView();
+        Controller controller;
+        do {
+            controller = this.logic.getController();
+            this.view.interact(controller);
+        } while (controller != null);
     }
 
 }

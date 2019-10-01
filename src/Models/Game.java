@@ -1,5 +1,7 @@
 package Models;
 
+import Views.ProposalCombinationView;
+
 public class Game {
     private SecretCombination secretCombination;
     private ProposalCombination[] proposalsCombination;
@@ -53,5 +55,6 @@ public class Game {
     public void nextAttempt() {
         this.attempt++;
     }
+
 }
 

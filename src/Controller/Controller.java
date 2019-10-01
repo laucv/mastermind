@@ -6,7 +6,7 @@ import Models.SecretCombination;
 import Models.State;
 
 
-public class Controller {
+public abstract class Controller {
 
     protected Game game;
     protected State state;
@@ -37,15 +37,24 @@ public class Controller {
     }
 
     public boolean isValid(String string) {
-        return this.getProposalCombination().isValid(string);
+        return this.game.getProposalsCombination()[this.game.getAttempt()].isValid(string);
     }
 
-    public int getDead(int position){
+    public int getDead(int position) {
         return this.game.getResults()[position].getDead();
     }
 
-    public int getWounded(int position){
+    public int getWounded(int position) {
         return this.game.getResults()[position].getWounded();
     }
 
+    public boolean isFinished() {
+        return this.game.isFinished();
+    }
+
+    public abstract void accept(ControllerVisitor controllerVisitor);
+
+    public void next() {
+        this.state.next();
+    }
 }

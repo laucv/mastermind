@@ -13,6 +13,12 @@ public class ProposalCombinationView {
         this.controller = controller;
     }
 
+    public ProposalCombinationView readProposalCombination(){
+        ProposalCombinationView proposalCombinationView = new ProposalCombinationView(controller);
+        proposalCombinationView.read();
+        return proposalCombinationView;
+    }
+
     public void read(){
         Scanner scanner = new Scanner(System.in);
         String string;
