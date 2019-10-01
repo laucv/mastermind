@@ -44,15 +44,16 @@ public class ControlView extends View {
     @Override
     public void visit(ContinueController continueController) {
         GameView gameView = new GameView(continueController);
-        gameView.writeAttempt();
-        continueController.setNewProposalCombination(new ProposalCombinationView(continueController).readProposalCombination());
-        gameView.setNewAttempt();
-        continueController.saveAttempt();
-        gameView.writeResults();
-        if (continueController.getAttempt() < 10 && !continueController.isFinished()) {
+        boolean finished;
+        do {
+            gameView.writeAttempt();
+            continueController.setNewProposalCombination(new ProposalCombinationView(continueController).readProposalCombination());
+            gameView.setNewAttempt();
+            continueController.saveAttempt();
+            gameView.writeResults();
+            finished = continueController.isFinished();
             continueController.nextAttempt();
-        } else {
-            continueController.next();
-        }
+        } while (!finished && continueController.getAttempt() < 10);
+        continueController.next();
     }
 }

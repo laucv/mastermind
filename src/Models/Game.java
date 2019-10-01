@@ -1,7 +1,5 @@
 package Models;
 
-import Views.ProposalCombinationView;
-
 public class Game {
     private SecretCombination secretCombination;
     private ProposalCombination[] proposalsCombination;
@@ -24,7 +22,7 @@ public class Game {
     }
 
     public boolean isFinished() {
-        return this.secretCombination.isWinner(this.results[this.getAttempt()]);
+        return this.secretCombination.isWinner(this.results[this.attempt]);
     }
 
     public void saveAttempt() {

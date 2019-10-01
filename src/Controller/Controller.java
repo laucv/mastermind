@@ -49,6 +49,7 @@ public abstract class Controller {
     }
 
     public boolean isFinished() {
+        System.out.println(this.game.getAttempt());
         return this.game.isFinished();
     }
 

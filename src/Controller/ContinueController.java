@@ -2,7 +2,6 @@ package Controller;
 
 import Models.Game;
 import Models.State;
-import Views.GameView;
 import Views.ProposalCombinationView;
 
 public class ContinueController extends Controller {

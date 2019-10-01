@@ -2,7 +2,6 @@ package Controller;
 
 import Models.Game;
 import Models.State;
-import Views.SecretCombinationView;
 
 public class ResumeController extends Controller {
 
