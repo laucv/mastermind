@@ -10,7 +10,8 @@ import java.util.Scanner;
 
 public class ControlView extends View {
 
-    static final int NUMERO_DE_INTENTOS = 10;
+    static final int POSICION_REAL = 9;
+
     @Override
     public void interact(Controller controller) {
         controller.accept(this);
@@ -46,16 +47,17 @@ public class ControlView extends View {
     public void visit(ContinueController continueController) {
         GameView gameView = new GameView(continueController);
         boolean finished;
-        do {
-            gameView.writeAttempt();
-            continueController.setNewProposalCombination(new ProposalCombinationView(continueController).readProposalCombination());
-            gameView.setNewAttempt();
-            continueController.saveAttempt();
-            gameView.writeResults();
-            finished = continueController.isFinished();
-            continueController.nextAttempt();
-        } while (!finished && continueController.getAttempt() < NUMERO_DE_INTENTOS);
-        this.finishedGame(finished);
-        continueController.next();
+        gameView.writeAttempt();
+        continueController.setNewProposalCombination(new ProposalCombinationView(continueController).readProposalCombination());
+        gameView.setNewAttempt();
+        continueController.saveAttempt();
+        gameView.writeResults();
+        finished = continueController.isFinished();
+        continueController.nextAttempt();
+        if (finished || continueController.getAttempt() > POSICION_REAL) {
+            this.finishedGame(finished);
+            continueController.next();
+        }
+
     }
 }
