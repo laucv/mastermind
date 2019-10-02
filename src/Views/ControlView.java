@@ -29,16 +29,17 @@ public class ControlView extends View {
     }
 
 
-    private void finishedGame(boolean finished) {
+    private void finishedGame(boolean finished, ContinueController continueController) {
         if (finished) {
             System.out.println("You win!");
         } else {
             System.out.println("You lose!");
+            new SecretCombinationView(continueController).writeSecret();
         }
     }
 
 
-    public boolean dialogue() {
+    private boolean dialogue() {
         System.out.println("Would you like to play again? Y/N");
         return Character.toLowerCase(new Scanner(System.in).nextLine().charAt(0)) == 'y';
     }
@@ -55,7 +56,7 @@ public class ControlView extends View {
         finished = continueController.isFinished();
         continueController.nextAttempt();
         if (finished || continueController.getAttempt() > POSICION_REAL) {
-            this.finishedGame(finished);
+            this.finishedGame(finished, continueController);
             continueController.next();
         }
 
