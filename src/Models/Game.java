@@ -1,6 +1,7 @@
 package Models;
 
 public class Game {
+    static final int NUMERO_DE_INTENTOS = 10;
     private SecretCombination secretCombination;
     private ProposalCombination[] proposalsCombination;
     private Result[] results;
@@ -12,9 +13,9 @@ public class Game {
 
     public void clear() {
         this.secretCombination = new SecretCombination();
-        this.proposalsCombination = new ProposalCombination[10];
-        this.results = new Result[10];
-        for (int i = 0; i < 10; i++) {
+        this.proposalsCombination = new ProposalCombination[NUMERO_DE_INTENTOS];
+        this.results = new Result[NUMERO_DE_INTENTOS];
+        for (int i = 0; i < NUMERO_DE_INTENTOS; i++) {
             this.proposalsCombination[i] = new ProposalCombination();
             this.results[i] = new Result();
         }

@@ -4,12 +4,13 @@ import Controller.ContinueController;
 import Controller.Controller;
 import Controller.ResumeController;
 import Controller.StartController;
-import Models.Game;
+
 
 import java.util.Scanner;
 
 public class ControlView extends View {
 
+    static final int NUMERO_DE_INTENTOS = 10;
     @Override
     public void interact(Controller controller) {
         controller.accept(this);
@@ -23,9 +24,9 @@ public class ControlView extends View {
 
     @Override
     public void visit(ResumeController resumeController) {
-        this.finishedGame(resumeController.isFinished());
         resumeController.resume(dialogue());
     }
+
 
     private void finishedGame(boolean finished) {
         if (finished) {
@@ -53,7 +54,8 @@ public class ControlView extends View {
             gameView.writeResults();
             finished = continueController.isFinished();
             continueController.nextAttempt();
-        } while (!finished && continueController.getAttempt() < 10);
+        } while (!finished && continueController.getAttempt() < NUMERO_DE_INTENTOS);
+        this.finishedGame(finished);
         continueController.next();
     }
 }
