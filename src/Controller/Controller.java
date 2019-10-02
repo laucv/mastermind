@@ -3,14 +3,17 @@ package Controller;
 import Models.Game;
 import Models.ProposalCombination;
 import Models.SecretCombination;
+import Models.State;
 
 
-public class Controller {
+public abstract class Controller {
 
-    final Game game;
+    protected Game game;
+    protected State state;
 
-    public Controller(Game game) {
+    public Controller(Game game, State state) {
         this.game = game;
+        this.state = state;
     }
 
     public void setNewProposalCombination(int attempt, ProposalCombination proposalCombination) {
@@ -34,15 +37,24 @@ public class Controller {
     }
 
     public boolean isValid(String string) {
-        return this.getProposalCombination().isValid(string);
+        return this.game.getProposalsCombination()[this.game.getAttempt()].isValid(string);
     }
 
-    public int getDead(int position){
+    public int getDead(int position) {
         return this.game.getResults()[position].getDead();
     }
 
-    public int getWounded(int position){
+    public int getWounded(int position) {
         return this.game.getResults()[position].getWounded();
     }
 
+    public boolean isFinished() {
+        return this.game.isFinished();
+    }
+
+    public abstract void accept(ControllerVisitor controllerVisitor);
+
+    public void next() {
+        this.state.next();
+    }
 }

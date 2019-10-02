@@ -1,17 +1,13 @@
 package Controller;
 
 import Models.Game;
-import Views.GameView;
+import Models.State;
 import Views.ProposalCombinationView;
 
 public class ContinueController extends Controller {
 
-    public ContinueController(Game game) {
-        super(game);
-    }
-
-    public boolean isFinished() {
-        return this.game.isFinished();
+    public ContinueController(Game game, State state) {
+        super(game, state);
     }
 
     public void nextAttempt() {
@@ -22,23 +18,12 @@ public class ContinueController extends Controller {
         this.game.saveAttempt();
     }
 
-    public void readAttempt() {
-        ProposalCombinationView proposalCombinationView = new ProposalCombinationView(new Controller(this.game));
-        proposalCombinationView.read();
+    public void setNewProposalCombination(ProposalCombinationView proposalCombinationView) {
         this.game.setNewProposalCombination(this.game.getAttempt(), proposalCombinationView.getProposalCombination());
     }
 
-    public void writeAttempt() {
-        new GameView(new Controller(this.game)).writeAttempt();
+    @Override
+    public void accept(ControllerVisitor controllerVisitor) {
+        controllerVisitor.visit(this);
     }
-
-    public void setNewAttempt() {
-        new GameView(new Controller(this.game)).setNewAttempt();
-    }
-
-    public void writeResults() {
-        new GameView(new Controller(this.game)).writeResults();
-    }
-
-
 }
