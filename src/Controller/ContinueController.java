@@ -22,9 +22,8 @@ public class ContinueController extends Controller {
         this.game.saveAttempt();
     }
 
-    public void readAttempt() {
-        ProposalCombinationView proposalCombinationView = new ProposalCombinationView(new Controller(this.game));
-        proposalCombinationView.read();
+
+    public void setNewProposalCombination(ProposalCombinationView proposalCombinationView) {
         this.game.setNewProposalCombination(this.game.getAttempt(), proposalCombinationView.getProposalCombination());
     }
 

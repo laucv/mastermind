@@ -15,8 +15,7 @@ public class ControlView extends View {
     @Override
     public void continueGame() {
         this.continueController.writeAttempt();
-        this.continueController.readAttempt();
-        this.continueController.setNewAttempt();
+        continueController.setNewProposalCombination(new ProposalCombinationView(continueController).readProposalCombination());        this.continueController.setNewAttempt();
         this.continueController.saveAttempt();
         this.continueController.writeResults();
     }
