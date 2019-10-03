@@ -17,12 +17,16 @@ public class Mastermind {
         new Mastermind().play();
     }
 
-    public void play() {
+    public void play() throws NullPointerException{
         Controller controller;
-        do {
-            controller = this.logic.getController();
-            this.view.interact(controller);
-        } while (controller != null);
+        try{
+            do {
+                controller = this.logic.getController();
+                this.view.interact(controller);
+            } while (controller != null);
+        }catch (NullPointerException e){
+        }
+
     }
 
 }
