@@ -10,10 +10,6 @@ public class Combination {
         this.colors = new Color[4];
     }
 
-    public Color[] getColors() {
-        return colors;
-    }
-
     public void setColorsInPosition(int position, Color color) {
         this.colors[position] = color;
     }
